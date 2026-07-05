@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 6 Months, My Love ❤️</title>
+
+<!-- ============================================================
+     GOOGLE FONTS
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ================================================================
+   ROOT VARIABLES — edit these to change the whole color palette
+   ================================================================ */
+:root{
+  --cream:#fdf6f0;
+  --blush:#ffe1e6;
+  --rose:#ffb6c1;
+  --rose-deep:#f78ca0;
+  --lavender:#e3d7fb;
+  --lavender-deep:#c9b6f0;
+  --text-dark:#5a4a4a;
+  --text-soft:#8a7575;
+  --gold:#e8c39e;
+  --shadow-soft: 0 10px 40px rgba(200,150,160,0.25);
+  --glass-bg: rgba(255,255,255,0.45);
+  --glass-border: rgba(255,255,255,0.6);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,var(--cream),var(--blush) 40%,var(--lavender));
+  color:var(--text-dark);
+  overflow-x:hidden;
+  cursor:none; /* custom heart cursor takes over */
+}
+
+.script{font-family:'Dancing Script',cursive;}
+
+h1,h2,h3{font-weight:600;}
+
+/* ================================================================
+   CUSTOM HEART CURSOR
+   ================================================================ */
+#heart-cursor{
+  position:fixed;
+  top:0;left:0;
+  width:22px;height:22px;
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform .08s ease-out;
+  font-size:20px;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+@media (hover:none), (pointer:coarse){
+  body{cursor:auto;}
+  #heart-cursor{display:none;}
+}
+
+/* ================================================================
+   LOADING SCREEN
+   ================================================================ */
+#loading-screen{
+  position:fixed;inset:0;
+  background:linear-gradient(135deg,var(--rose),var(--lavender));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:99999;
+  transition:opacity 1s ease, visibility 1s ease;
+}
+#loading-screen.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+
+.loader-heart{
+  font-size:70px;
+  animation:heartbeat 1.1s ease-in-out infinite;
+  filter:drop-shadow(0 5px 15px rgba(255,255,255,0.5));
+}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1);}
+  25%{transform:scale(1.2);}
+  40%{transform:scale(0.95);}
+  60%{transform:scale(1.15);}
+}
+.loader-text{
+  margin-top:20px;
+  font-size:1.2rem;
+  color:#fff;
+  letter-spacing:1px;
+  font-weight:400;
+  opacity:0.95;
+}
+.loader-dots span{animation:blink 1.4s infinite;}
+.loader-dots span:nth-child(2){animation-delay:.2s;}
+.loader-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,80%,100%{opacity:0;}40%{opacity:1;}}
+
+/* ================================================================
+   FLOATING BACKGROUND ELEMENTS (hearts / petals / sparkles)
+   ================================================================ */
+.float-layer{
+  position:fixed;inset:0;
+  pointer-events:none;
+  z-index:5;
+  overflow:hidden;
+}
+.floaty{
+  position:absolute;
+  bottom:-50px;
+  opacity:0.8;
+  animation-name:floatUp;
+  animation-timing-function:ease-in;
+  animation-iteration-count:infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  10%{opacity:0.9;}
+  90%{opacity:0.7;}
+  100%{transform:translateY(-110vh) rotate(360deg);opacity:0;}
+}
+.sparkle{
+  position:absolute;
+  width:6px;height:6px;
+  background:#fff;
+  border-radius:50%;
+  box-shadow:0 0 8px 2px rgba(255,255,255,0.9);
+  animation:sparkleTwinkle 2.5s infinite ease-in-out;
+}
+@keyframes sparkleTwinkle{
+  0%,100%{opacity:0;transform:scale(0.5);}
+  50%{opacity:1;transform:scale(1.2);}
+}
+
+/* ================================================================
+   SECTION WRAPPER / GENERAL
+   ================================================================ */
+section{
+  position:relative;
+  padding:100px 20px;
+  z-index:2;
+}
+.section-title{
+  text-align:center;
+  font-size:2.6rem;
+  margin-bottom:10px;
+  background:linear-gradient(90deg,var(--rose-deep),var(--lavender-deep));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.section-sub{
+  text-align:center;
+  color:var(--text-soft);
+  margin-bottom:60px;
+  font-weight:300;
+  font-size:1.05rem;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ================================================================
+   HERO SECTION
+   ================================================================ */
+#hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding-top:60px;
+}
+.hero-title{
+  font-family:'Dancing Script',cursive;
+  font-size:4.5rem;
+  color:var(--rose-deep);
+  text-shadow:0 4px 20px rgba(247,140,160,0.35);
+  animation:fadeInDown 1.4s ease;
+}
+.hero-subtitle{
+  margin-top:14px;
+  font-size:1.15rem;
+  color:var(--text-soft);
+  max-width:500px;
+  animation:fadeInDown 1.6s ease;
+}
+@keyframes fadeInDown{
+  from{opacity:0;transform:translateY(-30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.polaroid{
+  margin:40px auto 30px;
+  background:#fff;
+  padding:18px 18px 60px 18px;
+  border-radius:6px;
+  box-shadow:var(--shadow-soft);
+  transform:rotate(-4deg);
+  transition:transform .4s ease;
+  width:260px;
+  animation:fadeInUp 1.8s ease;
+}
+.polaroid:hover{transform:rotate(0deg) scale(1.04);}
+.polaroid img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:2px;
+  display:block;
+}
+.polaroid .caption{
+  font-family:'Dancing Script',cursive;
+  text-align:center;
+  margin-top:14px;
+  font-size:1.3rem;
+  color:var(--text-dark);
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+.start-btn{
+  margin-top:20px;
+  padding:16px 42px;
+  font-size:1.05rem;
+  font-family:'Poppins',sans-serif;
+  font-weight:500;
+  color:#fff;
+  background:linear-gradient(135deg,var(--rose-deep),var(--lavender-deep));
+  border:none;
+  border-radius:50px;
+  cursor:none;
+  box-shadow:0 10px 30px rgba(247,140,160,0.45);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease;
+  animation:pulseBtn 2.4s infinite;
+}
+.start-btn:hover{
+  transform:translateY(-4px) scale(1.05);
+  box-shadow:0 16px 40px rgba(247,140,160,0.55);
+}
+@keyframes pulseBtn{
+  0%,100%{box-shadow:0 10px 30px rgba(247,140,160,0.45);}
+  50%{box-shadow:0 10px 45px rgba(247,140,160,0.7);}
+}
+
+.scroll-hint{
+  margin-top:50px;
+  font-size:0.85rem;
+  color:var(--text-soft);
+  opacity:0.8;
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(8px);}
+}
+
+/* ================================================================
+   PINTEREST GALLERY (masonry via CSS columns)
+   ================================================================ */
+.masonry{
+  column-count:4;
+  column-gap:20px;
+  max-width:1200px;
+  margin:0 auto;
+}
+@media(max-width:1000px){.masonry{column-count:3;}}
+@media(max-width:700px){.masonry{column-count:2;}}
+@media(max-width:420px){.masonry{column-count:1;}}
+
+.pin-card{
+  break-inside:avoid;
+  margin-bottom:20px;
+  border-radius:20px;
+  overflow:hidden;
+  background:var(--glass-bg);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-soft);
+  cursor:none;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
+  position:relative;
+}
+.pin-card:hover{
+  transform:perspective(600px) rotateX(4deg) rotateY(-4deg) scale(1.03);
+  box-shadow:0 20px 45px rgba(200,150,160,0.4);
+}
+.pin-card img{
+  width:100%;
+  display:block;
+  object-fit:cover;
+}
+.pin-caption{
+  padding:14px 16px 18px;
+  font-size:0.95rem;
+  color:var(--text-dark);
+  font-weight:500;
+  text-align:center;
+}
+
+/* modal */
+#photo-modal{
+  position:fixed;inset:0;
+  background:rgba(30,20,25,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9998;
+  padding:20px;
+  backdrop-filter:blur(6px);
+}
+#photo-modal.active{display:flex;animation:fadeInModal .4s ease;}
+@keyframes fadeInModal{from{opacity:0;}to{opacity:1;}}
+#photo-modal img{
+  max-width:90vw;
+  max-height:75vh;
+  border-radius:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
+#photo-modal .modal-caption{
+  color:#fff;
+  text-align:center;
+  margin-top:16px;
+  font-family:'Dancing Script',cursive;
+  font-size:1.5rem;
+}
+#photo-modal .modal-close{
+  position:absolute;
+  top:30px;right:40px;
+  font-size:2rem;
+  color:#fff;
+  cursor:none;
+  background:none;
+  border:none;
+}
+
+/* ================================================================
+   TIMELINE
+   ================================================================ */
+.timeline{
+  max-width:800px;
+  margin:0 auto;
+  position:relative;
+}
+.timeline::before{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:0;bottom:0;
+  width:3px;
+  background:linear-gradient(180deg,var(--rose),var(--lavender));
+  transform:translateX(-50%);
+}
+.tl-item{
+  position:relative;
+  width:50%;
+  padding:20px 40px;
+  margin-bottom:40px;
+}
+.tl-item:nth-child(odd){left:0;text-align:right;}
+.tl-item:nth-child(even){left:50%;text-align:left;}
+.tl-card{
+  display:inline-block;
+  background:var(--glass-bg);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--glass-border);
+  border-radius:18px;
+  padding:22px 26px;
+  box-shadow:var(--shadow-soft);
+  max-width:320px;
+}
+.tl-icon{
+  font-size:1.8rem;
+  margin-bottom:8px;
+  display:block;
+}
+.tl-card h3{color:var(--rose-deep);margin-bottom:6px;font-size:1.15rem;}
+.tl-card p{color:var(--text-soft);font-size:0.92rem;font-weight:300;}
+.tl-dot{
+  position:absolute;
+  top:28px;
+  width:18px;height:18px;
+  background:var(--rose-deep);
+  border:4px solid var(--cream);
+  border-radius:50%;
+  box-shadow:0 0 0 4px rgba(247,140,160,0.3);
+}
+.tl-item:nth-child(odd) .tl-dot{right:-9px;}
+.tl-item:nth-child(even) .tl-dot{left:-9px;}
+
+@media(max-width:700px){
+  .timeline::before{left:20px;}
+  .tl-item, .tl-item:nth-child(odd), .tl-item:nth-child(even){
+    width:100%;left:0;text-align:left;padding-left:50px;padding-right:10px;
+  }
+  .tl-item:nth-child(odd) .tl-dot, .tl-item:nth-child(even) .tl-dot{left:11px;}
+}
+
+/* ================================================================
+   LOVE LETTER
+   ================================================================ */
+#letter-section{text-align:center;}
+.envelope-wrap{
+  perspective:1200px;
+  margin:0 auto;
+  width:300px;
+}
+.envelope{
+  position:relative;
+  width:300px;
+  height:200px;
+  margin:0 auto;
+  cursor:none;
+  transition:transform .3s ease;
+}
+.envelope:hover{transform:scale(1.03);}
+.envelope-body{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,#fff,var(--blush));
+  border-radius:10px;
+  box-shadow:var(--shadow-soft);
+}
+.envelope-flap{
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  clip-path:polygon(0 0,50% 55%,100% 0);
+  background:linear-gradient(135deg,var(--rose),var(--rose-deep));
+  border-radius:10px 10px 0 0;
+  transform-origin:top;
+  transition:transform .8s cubic-bezier(.6,-0.28,.74,.05);
+  z-index:3;
+}
+.envelope.open .envelope-flap{transform:rotateX(180deg);}
+.envelope-seal{
+  position:absolute;
+  top:55%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:2.2rem;
+  z-index:4;
+  transition:opacity .4s ease;
+}
+.envelope.open .envelope-seal{opacity:0;}
+.envelope-hint{
+  margin-top:20px;
+  color:var(--text-soft);
+  font-size:0.9rem;
+}
+
+.letter-paper{
+  max-width:600px;
+  margin:40px auto 0;
+  background:linear-gradient(135deg,#fffdf9,var(--cream));
+  border-radius:16px;
+  padding:40px 36px;
+  box-shadow:var(--shadow-soft);
+  opacity:0;
+  transform:translateY(40px) scale(0.95);
+  transition:opacity .8s ease, transform .8s ease;
+  text-align:left;
+}
+.letter-paper.show{opacity:1;transform:translateY(0) scale(1);}
+.letter-paper p{
+  font-family:'Dancing Script',cursive;
+  font-size:1.4rem;
+  line-height:1.9;
+  color:var(--text-dark);
+  min-height:220px;
+  white-space:pre-wrap;
+}
+.letter-signature{
+  text-align:right;
+  margin-top:10px;
+  font-size:1.6rem;
+  color:var(--rose-deep);
+}
+
+/* ================================================================
+   REASONS I LOVE YOU
+   ================================================================ */
+#reasons-section{text-align:center;}
+.reason-card{
+  max-width:520px;
+  margin:0 auto;
+  background:var(--glass-bg);
+  backdrop-filter:blur(12px);
+  border:1px solid var(--glass-border);
+  border-radius:24px;
+  padding:50px 34px;
+  box-shadow:var(--shadow-soft);
+  position:relative;
+  min-height:160px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:box-shadow .4s ease, transform .3s ease;
+}
+.reason-card.glow{
+  box-shadow:0 0 50px rgba(247,140,160,0.7), var(--shadow-soft);
+  animation:cardPop .5s ease;
+}
+@keyframes cardPop{
+  0%{transform:scale(0.9);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+#reason-text{
+  font-family:'Dancing Script',cursive;
+  font-size:1.7rem;
+  color:var(--text-dark);
+  line-height:1.5;
+}
+.reveal-btn{
+  margin-top:36px;
+  padding:15px 38px;
+  font-size:1rem;
+  font-family:'Poppins',sans-serif;
+  font-weight:500;
+  color:#fff;
+  background:linear-gradient(135deg,var(--lavender-deep),var(--rose-deep));
+  border:none;
+  border-radius:50px;
+  cursor:none;
+  box-shadow:0 10px 30px rgba(200,160,220,0.45);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);
+}
+.reveal-btn:hover{transform:translateY(-4px) scale(1.05);}
+.reason-counter{
+  margin-top:14px;
+  font-size:0.85rem;
+  color:var(--text-soft);
+}
+
+/* heart explosion */
+.heart-burst{
+  position:fixed;
+  pointer-events:none;
+  font-size:1.4rem;
+  z-index:9997;
+  animation:burstOut 1s ease-out forwards;
+}
+@keyframes burstOut{
+  0%{transform:translate(0,0) scale(1);opacity:1;}
+  100%{transform:translate(var(--dx),var(--dy)) scale(0.3);opacity:0;}
+}
+
+/* ================================================================
+   FINAL CELEBRATION
+   ================================================================ */
+#celebration{
+  text-align:center;
+  background:linear-gradient(135deg,var(--rose),var(--lavender));
+  border-radius:40px;
+  max-width:1000px;
+  margin:60px auto;
+  padding:80px 30px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:var(--shadow-soft);
+}
+.celebration-title{
+  font-family:'Dancing Script',cursive;
+  font-size:3.2rem;
+  color:#fff;
+  text-shadow:0 4px 20px rgba(0,0,0,0.15);
+}
+.celebration-days{
+  margin-top:16px;
+  font-size:1.6rem;
+  color:#fff;
+  font-weight:500;
+}
+#confetti-canvas{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  pointer-events:none;
+}
+
+/* ================================================================
+   ONE LAST SECRET — CINEMATIC ENDING
+   ================================================================ */
+#secret-section{
+  text-align:center;
+  padding:120px 20px 160px;
+}
+.secret-btn{
+  padding:18px 46px;
+  font-size:1.1rem;
+  font-family:'Poppins',sans-serif;
+  font-weight:500;
+  color:#fff;
+  background:linear-gradient(135deg,#8a6fbf,var(--rose-deep));
+  border:none;
+  border-radius:50px;
+  cursor:none;
+  box-shadow:0 10px 35px rgba(140,110,190,0.5);
+  transition:transform .3s ease;
+}
+.secret-btn:hover{transform:translateY(-4px) scale(1.05);}
+
+#cinematic{
+  position:fixed;inset:0;
+  background:#0a0612;
+  z-index:99998;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:20px;
+  overflow:hidden;
+}
+#cinematic.active{display:flex;}
+.stars{
+  position:absolute;inset:0;
+}
+.star{
+  position:absolute;
+  width:2px;height:2px;
+  background:#fff;
+  border-radius:50%;
+  animation:twinkle 3s infinite ease-in-out;
+}
+@keyframes twinkle{
+  0%,100%{opacity:0.2;}
+  50%{opacity:1;}
+}
+#cinematic-text{
+  font-family:'Dancing Script',cursive;
+  font-size:2.2rem;
+  color:#fff;
+  max-width:700px;
+  min-height:120px;
+  z-index:2;
+  line-height:1.6;
+  text-shadow:0 0 20px rgba(255,255,255,0.3);
+}
+.cinematic-photo{
+  margin-top:20px;
+  width:220px;height:220px;
+  border-radius:50%;
+  object-fit:cover;
+  z-index:2;
+  display:none;
+  animation:glowPulse 2.5s infinite ease-in-out;
+}
+@keyframes glowPulse{
+  0%,100%{box-shadow:0 0 40px 10px rgba(255,182,193,0.6);}
+  50%{box-shadow:0 0 70px 25px rgba(255,182,193,0.9);}
+}
+.cinematic-final{
+  margin-top:30px;
+  font-family:'Dancing Script',cursive;
+  font-size:2.8rem;
+  color:#ffd9e3;
+  display:none;
+  z-index:2;
+}
+.cinematic-close{
+  margin-top:40px;
+  padding:12px 34px;
+  border:1px solid rgba(255,255,255,0.5);
+  background:transparent;
+  color:#fff;
+  border-radius:40px;
+  cursor:none;
+  display:none;
+  z-index:2;
+  font-family:'Poppins',sans-serif;
+}
+
+/* ================================================================
+   REPLAY BUTTON + MUSIC BUTTON (fixed controls)
+   ================================================================ */
+#fixed-controls{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  display:flex;
+  gap:10px;
+  z-index:500;
+}
+.control-btn{
+  width:52px;height:52px;
+  border-radius:50%;
+  border:none;
+  background:var(--glass-bg);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--glass-border);
+  box-shadow:var(--shadow-soft);
+  font-size:1.3rem;
+  cursor:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .3s ease;
+}
+.control-btn:hover{transform:scale(1.1);}
+
+/* ================================================================
+   EASTER EGG (bottom of page)
+   ================================================================ */
+#easter-egg{
+  text-align:center;
+  padding:60px 20px 100px;
+}
+#egg-heart{
+  font-size:3rem;
+  cursor:none;
+  display:inline-block;
+  transition:transform .2s ease;
+  user-select:none;
+}
+#egg-heart:hover{transform:scale(1.15);}
+#egg-message{
+  margin-top:20px;
+  font-family:'Dancing Script',cursive;
+  font-size:1.6rem;
+  color:var(--rose-deep);
+  max-width:500px;
+  margin-left:auto;margin-right:auto;
+  opacity:0;
+  transition:opacity 1s ease;
+}
+#egg-message.show{opacity:1;}
+#egg-hint{
+  margin-top:10px;
+  font-size:0.8rem;
+  color:var(--text-soft);
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  font-size:0.8rem;
+  color:var(--text-soft);
+}
+
+/* Responsive tweaks */
+@media(max-width:600px){
+  .hero-title{font-size:3rem;}
+  .section-title{font-size:2rem;}
+  #cinematic-text{font-size:1.5rem;}
+  .cinematic-final{font-size:2rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     CUSTOM CURSOR
+     ============================================================ -->
+<div id="heart-cursor">❤️</div>
+
+<!-- ============================================================
+     LOADING SCREEN
+     ============================================================ -->
+<div id="loading-screen">
+  <div class="loader-heart">❤️</div>
+  <div class="loader-text">Loading our memories<span class="loader-dots"><span>.</span><span>.</span><span>.</span></span></div>
+</div>
+
+<!-- Floating background hearts / petals / sparkles, generated by JS -->
+<div class="float-layer" id="float-layer"></div>
+
+<!-- ============================================================
+     FIXED CONTROLS: REPLAY + MUSIC
+     ============================================================ -->
+<div id="fixed-controls">
+  <button class="control-btn" id="music-btn" title="Play music">🎵</button>
+  <button class="control-btn" id="replay-btn" title="Replay experience">🔁</button>
+</div>
+
+<!-- Optional background music: replace src with your own song -->
+<audio id="bg-music" loop>
+  <source src="your-song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<section id="hero">
+  <h1 class="hero-title">Happy 6 Months ❤️</h1>
+  <p class="hero-subtitle">Six months of laughter, love, and a thousand little moments I'll treasure forever.</p>
+
+  <div class="polaroid">
+    <!-- Replace this src with your favorite photo -->
+    <img src="https://via.placeholder.com/260x260/ffe1e6/aa6b78?text=Our+Photo" alt="Favorite photo">
+    <div class="caption">us, always</div>
+  </div>
+
+  <button class="start-btn" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">Begin Our Story ✨</button>
+  <div class="scroll-hint">scroll to explore ↓</div>
+</section>
+
+<!-- ============================================================
+     PINTEREST PHOTO GALLERY
+     ============================================================ -->
+<section id="gallery">
+  <h2 class="section-title reveal">Our Gallery</h2>
+  <p class="section-sub reveal">Every picture, a piece of us</p>
+
+  <div class="masonry" id="masonry-grid">
+    <!-- 15 photo cards generated by JS below for easy editing -->
+  </div>
+</section>
+
+<!-- Photo modal -->
+<div id="photo-modal">
+  <button class="modal-close" onclick="closeModal()">&times;</button>
+  <div>
+    <img id="modal-img" src="" alt="Enlarged photo">
+    <div class="modal-caption" id="modal-caption"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     TIMELINE
+     ============================================================ -->
+<section id="timeline-section">
+  <h2 class="section-title reveal">Our Timeline</h2>
+  <p class="section-sub reveal">From strangers to soulmates</p>
+
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-icon">💬</span>
+        <h3>First Chat</h3>
+        <p>The message that started it all — I still remember exactly how nervous I was to hit send.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-icon">☕</span>
+        <h3>First Date</h3>
+        <p>Coffee turned into hours of talking, and I knew right then I wanted many more days like this one.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-icon">📸</span>
+        <h3>Favorite Memory</h3>
+        <p>That one perfect day we still talk about — the one that lives rent-free in my heart.</p>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <span class="tl-icon">❤️</span>
+        <h3>Today</h3>
+        <p>Six months in, and I fall for you a little more with every single day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ANIMATED LOVE LETTER
+     ============================================================ -->
+<section id="letter-section">
+  <h2 class="section-title reveal">A Little Letter For You</h2>
+  <p class="section-sub reveal">Click the envelope to open it</p>
+
+  <div class="envelope-wrap reveal">
+    <div class="envelope" id="envelope" onclick="openEnvelope()">
+      <div class="envelope-body"></div>
+      <div class="envelope-flap"></div>
+      <div class="envelope-seal">💌</div>
+    </div>
+    <div class="envelope-hint">tap to open</div>
+  </div>
+
+  <div class="letter-paper" id="letter-paper">
+    <p id="letter-typewriter"></p>
+    <div class="letter-signature script">Forever yours</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REASONS I LOVE YOU
+     ============================================================ -->
+<section id="reasons-section">
+  <h2 class="section-title reveal">Reasons I Love You</h2>
+  <p class="section-sub reveal">Just a few of the endless list</p>
+
+  <div class="reason-card" id="reason-card">
+    <p id="reason-text">Tap the button below to reveal a reason 💗</p>
+  </div>
+  <button class="reveal-btn" onclick="revealReason()">Reveal Another Reason 💗</button>
+  <div class="reason-counter" id="reason-counter"></div>
+</section>
+
+<!-- ============================================================
+     FINAL CELEBRATION
+     ============================================================ -->
+<section>
+  <div id="celebration">
+    <canvas id="confetti-canvas"></canvas>
+    <h2 class="celebration-title">Happy 6 Months ❤️</h2>
+    <div class="celebration-days">183 Days Together ❤️</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ONE LAST SECRET — CINEMATIC ENDING
+     ============================================================ -->
+<section id="secret-section">
+  <button class="secret-btn" onclick="startCinematic()">One Last Secret ❤️</button>
+</section>
+
+<div id="cinematic">
+  <div class="stars" id="stars"></div>
+  <div id="cinematic-text"></div>
+  <img class="cinematic-photo" id="cinematic-photo" src="https://via.placeholder.com/220x220/ffe1e6/aa6b78?text=You" alt="favorite photo">
+  <div class="cinematic-final" id="cinematic-final"></div>
+  <button class="cinematic-close" id="cinematic-close" onclick="closeCinematic()">close ✕</button>
+</div>
+
+<!-- ============================================================
+     EASTER EGG
+     ============================================================ -->
+<section id="easter-egg">
+  <div id="egg-heart">❤️</div>
+  <div id="egg-hint">psst... tap the heart</div>
+  <p id="egg-message">P.S. If I had to choose again, I'd still choose you. Every single time. ❤️</p>
+</section>
+
+<footer>Made with ❤️ for the love of my life — six months down, forever to go.</footer>
+
+<script>
+/* ==================================================================
+   UTILITY: random number helper
+   ================================================================== */
+function rand(min, max){ return Math.random() * (max - min) + min; }
+
+/* ==================================================================
+   CUSTOM HEART CURSOR — follows mouse
+   ================================================================== */
+const cursor = document.getElementById('heart-cursor');
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%,-50%) scale(0.7)');
+document.addEventListener('mouseup', () => cursor.style.transform = 'translate(-50%,-50%) scale(1)');
+
+/* ==================================================================
+   LOADING SCREEN — fades out after page load
+   ================================================================== */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loading-screen').classList.add('hidden');
+  }, 1800);
+});
+
+/* ==================================================================
+   FLOATING HEARTS / PETALS / SPARKLES BACKGROUND
+   ================================================================== */
+const floatLayer = document.getElementById('float-layer');
+const floatEmojis = ['❤️','💗','🌸','🌷','✨'];
+
+function spawnFloaty(){
+  const el = document.createElement('div');
+  el.className = 'floaty';
+  el.textContent = floatEmojis[Math.floor(rand(0, floatEmojis.length))];
+  el.style.left = rand(0, 100) + 'vw';
+  el.style.fontSize = rand(14, 30) + 'px';
+  const duration = rand(8, 16);
+  el.style.animationDuration = duration + 's';
+  floatLayer.appendChild(el);
+  setTimeout(() => el.remove(), duration * 1000);
+}
+setInterval(spawnFloaty, 700);
+
+function spawnSparkle(){
+  const el = document.createElement('div');
+  el.className = 'sparkle';
+  el.style.left = rand(0,100) + 'vw';
+  el.style.top = rand(0,100) + 'vh';
+  el.style.animationDuration = rand(1.5, 3.5) + 's';
+  floatLayer.appendChild(el);
+  setTimeout(() => el.remove(), 4000);
+}
+setInterval(spawnSparkle, 900);
+
+/* ==================================================================
+   PINTEREST GALLERY — 15 editable photo placeholders
+   Simply replace the "src" and "caption" fields below with your own!
+   ================================================================== */
+const photos = [
+  { src:"https://via.placeholder.com/300x400/ffe1e6/aa6b78?text=Photo+1", caption:"our very first photo together 💕" },
+  { src:"https://via.placeholder.com/300x300/e3d7fb/6b5b95?text=Photo+2", caption:"that random Tuesday that felt magical" },
+  { src:"https://via.placeholder.com/300x450/ffb6c1/7a4a55?text=Photo+3", caption:"you, mid-laugh, my favorite sound" },
+  { src:"https://via.placeholder.com/300x350/fdf6f0/aa6b78?text=Photo+4", caption:"golden hour with my favorite person" },
+  { src:"https://via.placeholder.com/300x300/e3d7fb/6b5b95?text=Photo+5", caption:"the day we got lost and didn't mind" },
+  { src:"https://via.placeholder.com/300x420/ffe1e6/aa6b78?text=Photo+6", caption:"coffee dates > everything" },
+  { src:"https://via.placeholder.com/300x300/ffb6c1/7a4a55?text=Photo+7", caption:"you make ordinary days beautiful" },
+  { src:"https://via.placeholder.com/300x400/fdf6f0/aa6b78?text=Photo+8", caption:"my favorite view is you smiling" },
+  { src:"https://via.placeholder.com/300x360/e3d7fb/6b5b95?text=Photo+9", caption:"this one lives in my camera roll forever" },
+  { src:"https://via.placeholder.com/300x300/ffe1e6/aa6b78?text=Photo+10", caption:"proof that we're the cutest" },
+  { src:"https://via.placeholder.com/300x430/ffb6c1/7a4a55?text=Photo+11", caption:"the road trip that started it all" },
+  { src:"https://via.placeholder.com/300x300/fdf6f0/aa6b78?text=Photo+12", caption:"dinner dates & endless talks" },
+  { src:"https://via.placeholder.com/300x380/e3d7fb/6b5b95?text=Photo+13", caption:"you, being effortlessly you" },
+  { src:"https://via.placeholder.com/300x300/ffe1e6/aa6b78?text=Photo+14", caption:"a moment I never want to forget" },
+  { src:"https://via.placeholder.com/300x400/ffb6c1/7a4a55?text=Photo+15", caption:"here's to many more like this" }
+];
+
+const grid = document.getElementById('masonry-grid');
+photos.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'pin-card reveal';
+  card.innerHTML = `<img src="${p.src}" alt="${p.caption}" loading="lazy">
+                     <div class="pin-caption">${p.caption}</div>`;
+  card.addEventListener('click', () => openModal(p.src, p.caption));
+  grid.appendChild(card);
+});
+
+function openModal(src, caption){
+  document.getElementById('modal-img').src = src;
+  document.getElementById('modal-caption').textContent = caption;
+  document.getElementById('photo-modal').classList.add('active');
+}
+function closeModal(){
+  document.getElementById('photo-modal').classList.remove('active');
+}
+document.getElementById('photo-modal').addEventListener('click', (e) => {
+  if(e.target.id === 'photo-modal') closeModal();
+});
+
+/* ==================================================================
+   SCROLL REVEAL ANIMATIONS (Intersection Observer)
+   ================================================================== */
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => observer.observe(el));
+
+/* ==================================================================
+   LOVE LETTER — envelope open + typewriter effect
+   ================================================================== */
+const letterText = `My love,
+
+Six months ago, I didn't know that a simple hello would turn into my favorite chapter yet. Every day with you feels like a soft place to land.
+
+Thank you for your patience, your warmth, and for loving me exactly as I am. Here's to many more months of us.
+
+I love you more than words can type.`;
+
+let letterOpened = false;
+function openEnvelope(){
+  if(letterOpened) return;
+  letterOpened = true;
+  document.getElementById('envelope').classList.add('open');
+
+  setTimeout(() => {
+    const paper = document.getElementById('letter-paper');
+    paper.classList.add('show');
+    typeWriter(letterText, document.getElementById('letter-typewriter'));
+  }, 700);
+}
+
+function typeWriter(text, el, speed = 35){
+  let i = 0;
+  el.textContent = '';
+  function type(){
+    if(i < text.length){
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
+/* ==================================================================
+   REASONS I LOVE YOU — random reveal + special surprise every 5th click
+   ================================================================== */
+const reasons = [
+  "Your smile brightens my day.",
+  "Your kindness inspires me.",
+  "You make me feel at home.",
+  "I love your laugh.",
+  "You make ordinary moments magical.",
+  "I love how caring you are.",
+  "You always support me.",
+  "You understand me.",
+  "You make me a better person.",
+  "Every memory with you is special.",
+  "Your hugs are my favorite place.",
+  "You're my favorite notification.",
+  "I feel lucky to have you.",
+  "Your eyes are beautiful.",
+  "You make me smile without trying.",
+  "You bring peace into my life.",
+  "I admire your strength.",
+  "You make life exciting.",
+  "Thank you for choosing me every day.",
+  "I love you today, tomorrow, and always."
+];
+
+const specialMessages = [
+  "🌟 Special Surprise: You are, hands down, the best thing that's happened to me.",
+  "🌟 Special Surprise: I fall in love with you a little more every single day.",
+  "🌟 Special Surprise: My favorite place in the world is wherever you are.",
+  "🌟 Special Surprise: I can't wait for all our forevers together."
+];
+
+let clickCount = 0;
+let usedReasons = [];
+
+function revealReason(){
+  clickCount++;
+  const card = document.getElementById('reason-card');
+  const textEl = document.getElementById('reason-text');
+  const counterEl = document.getElementById('reason-counter');
+
+  let message;
+  if(clickCount % 5 === 0){
+    message = specialMessages[Math.floor(rand(0, specialMessages.length))];
+  } else {
+    if(usedReasons.length === reasons.length) usedReasons = [];
+    let idx;
+    do { idx = Math.floor(rand(0, reasons.length)); } while(usedReasons.includes(idx));
+    usedReasons.push(idx);
+    message = reasons[idx];
+  }
+
+  // pop + glow animation
+  card.classList.remove('glow');
+  void card.offsetWidth; // restart animation
+  card.classList.add('glow');
+
+  typeWriter(message, textEl, 28);
+  counterEl.textContent = `${clickCount} reason${clickCount === 1 ? '' : 's'} revealed 💗`;
+
+  heartExplosion();
+  spawnPetalBurst();
+}
+
+/* Heart explosion effect near the button/card */
+function heartExplosion(){
+  const card = document.getElementById('reason-card');
+  const rect = card.getBoundingClientRect();
+  const cx = rect.left + rect.width/2;
+  const cy = rect.top + rect.height/2;
+
+  for(let i=0; i<14; i++){
+    const heart = document.createElement('div');
+    heart.className = 'heart-burst';
+    heart.textContent = ['❤️','💗','💕','✨'][Math.floor(rand(0,4))];
+    heart.style.left = cx + 'px';
+    heart.style.top = cy + 'px';
+    const angle = rand(0, Math.PI*2);
+    const dist = rand(80, 220);
+    heart.style.setProperty('--dx', Math.cos(angle)*dist + 'px');
+    heart.style.setProperty('--dy', Math.sin(angle)*dist + 'px');
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 1000);
+  }
+}
+
+function spawnPetalBurst(){
+  for(let i=0;i<10;i++){
+    setTimeout(() => spawnFloaty(), i*60);
+  }
+}
+
+/* ==================================================================
+   CONFETTI — canvas based, runs in celebration section
+   ================================================================== */
+const confettiCanvas = document.getElementById('confetti-canvas');
+const ctx = confettiCanvas.getContext('2d');
+let confettiPieces = [];
+
+function resizeConfettiCanvas(){
+  const rect = confettiCanvas.parentElement.getBoundingClientRect();
+  confettiCanvas.width = rect.width;
+  confettiCanvas.height = rect.height;
+}
+resizeConfettiCanvas();
+window.addEventListener('resize', resizeConfettiCanvas);
+
+function createConfetti(){
+  confettiPieces = [];
+  const colors = ['#ffb6c1','#f78ca0','#e3d7fb','#c9b6f0','#fff','#e8c39e'];
+  for(let i=0;i<120;i++){
+    confettiPieces.push({
+      x: rand(0, confettiCanvas.width),
+      y: rand(-confettiCanvas.height, 0),
+      size: rand(4,9),
+      color: colors[Math.floor(rand(0,colors.length))],
+      speed: rand(1.5,4),
+      drift: rand(-1,1),
+      rotation: rand(0,360)
+    });
+  }
+}
+
+function animateConfetti(){
+  ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+  confettiPieces.forEach(p => {
+    p.y += p.speed;
+    p.x += p.drift;
+    p.rotation += 2;
+    if(p.y > confettiCanvas.height){
+      p.y = -10;
+      p.x = rand(0, confettiCanvas.width);
+    }
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rotation * Math.PI/180);
+    ctx.fillStyle = p.color;
+    ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+    ctx.restore();
+  });
+  requestAnimationFrame(animateConfetti);
+}
+
+let confettiStarted = false;
+const celebrationObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting && !confettiStarted){
+      confettiStarted = true;
+      resizeConfettiCanvas();
+      createConfetti();
+      animateConfetti();
+    }
+  });
+}, { threshold: 0.3 });
+celebrationObserver.observe(document.getElementById('celebration'));
+
+/* ==================================================================
+   ONE LAST SECRET — cinematic sequence
+   ================================================================== */
+const cinematic = document.getElementById('cinematic');
+const cinematicText = document.getElementById('cinematic-text');
+const cinematicPhoto = document.getElementById('cinematic-photo');
+const cinematicFinal = document.getElementById('cinematic-final');
+const cinematicClose = document.getElementById('cinematic-close');
+const starsContainer = document.getElementById('stars');
+
+// generate twinkling stars once
+for(let i=0;i<80;i++){
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.left = rand(0,100) + 'vw';
+  star.style.top = rand(0,100) + 'vh';
+  star.style.animationDelay = rand(0,3) + 's';
+  starsContainer.appendChild(star);
+}
+
+const cinematicLines = [
+  "In a world full of billions of people...",
+  "...my favorite person will always be you.",
+  "Thank you for making these six months the happiest chapter of my life."
+];
+
+function startCinematic(){
+  cinematic.classList.add('active');
+  cinematicText.textContent = '';
+  cinematicPhoto.style.display = 'none';
+  cinematicFinal.style.display = 'none';
+  cinematicClose.style.display = 'none';
+
+  let lineIndex = 0;
+  function nextLine(){
+    if(lineIndex < cinematicLines.length){
+      typeWriter(cinematicLines[lineIndex], cinematicText, 40);
+      const lineDuration = cinematicLines[lineIndex].length * 40 + 1800;
+      lineIndex++;
+      setTimeout(nextLine, lineDuration);
+    } else {
+      // show photo
+      cinematicPhoto.style.display = 'block';
+      setTimeout(() => {
+        cinematicFinal.style.display = 'block';
+        typeWriter("Happy 6 Months, My Love ❤️", cinematicFinal, 45);
+        setTimeout(() => {
+          const forever = document.createElement('div');
+          forever.className = 'cinematic-final';
+          forever.style.display = 'block';
+          forever.style.marginTop = '10px';
+          forever.style.fontSize = '2rem';
+          cinematicFinal.after(forever);
+          typeWriter("Here's to forever... ♾️", forever, 45);
+          cinematicClose.style.display = 'inline-block';
+          spawnPetalBurst();
+        }, 2200);
+      }, 1200);
+    }
+  }
+  nextLine();
+}
+
+function closeCinematic(){
+  cinematic.classList.remove('active');
+}
+
+/* ==================================================================
+   REPLAY BUTTON — resets page to top & re-plays loading screen
+   ================================================================== */
+document.getElementById('replay-btn').addEventListener('click', () => {
+  window.scrollTo({top:0, behavior:'smooth'});
+  const loader = document.getElementById('loading-screen');
+  loader.classList.remove('hidden');
+  setTimeout(() => loader.classList.add('hidden'), 1600);
+});
+
+/* ==================================================================
+   MUSIC BUTTON — enabled only after user interaction (autoplay policy)
+   ================================================================== */
+const musicBtn = document.getElementById('music-btn');
+const bgMusic = document.getElementById('bg-music');
+let musicPlaying = false;
+
+musicBtn.addEventListener('click', () => {
+  if(!musicPlaying){
+    bgMusic.play().catch(() => {
+      // fails silently if no valid audio source has been added yet
+      console.log('Add your own music file (your-song.mp3) to enable playback.');
+    });
+    musicBtn.textContent = '⏸️';
+    musicPlaying = true;
+  } else {
+    bgMusic.pause();
+    musicBtn.textContent = '🎵';
+    musicPlaying = false;
+  }
+});
+
+/* ==================================================================
+   EASTER EGG — click the heart 6 times to reveal secret message
+   ================================================================== */
+let eggClicks = 0;
+document.getElementById('egg-heart').addEventListener('click', () => {
+  eggClicks++;
+  const heart = document.getElementById('egg-heart');
+  heart.style.transform = 'scale(1.3)';
+  setTimeout(() => heart.style.transform = 'scale(1)', 150);
+
+  if(eggClicks >= 6){
+    document.getElementById('egg-message').classList.add('show');
+    document.getElementById('egg-hint').textContent = 'you found it 💝';
+    heartExplosion();
+  }
+});
+</script>
+</body>
+</html>
